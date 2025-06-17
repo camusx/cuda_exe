@@ -1,10 +1,12 @@
 # Elementwise
 
 ## 环境
-Hardware: H100 PCIe
-Docker image: nvcr.io/nvidia/pytorch:23.05-py3
-CUDA: 12.2
-torch: 2.0.0
+Hardware: 
+  H100 PCIe  
+  A100 SXM4-80G  
+Docker image: nvcr.io/nvidia/pytorch:23.05-py3  
+CUDA: 12.2  
+torch: 2.0.0  
 
 ## 测试脚本
 
@@ -13,151 +15,151 @@ torch: 2.0.0
 # 后续完善脚本
 bash run.sh
 ```
-
-H100输出
+A100输出
 ```
---------------------------------------------------
-                S=1, K=1024
-out_f32_torch: perf only, time:0.00341058ms, 
-     out_f32: test pass, time:0.00238609ms, 
-   out_f32x4: test pass, time:0.00235605ms, 
---------------------------------------------------
-out_f16_torch: perf only, time:0.00336981ms, 
-     out_f16: test pass, time:0.00238943ms, 
-   out_f16x2: test pass, time:0.00234962ms, 
-   out_f16x8: test pass, time:0.00236797ms, 
-out_f16x8pack: test pass, time:0.00233698ms, 
---------------------------------------------------
---------------------------------------------------
+--------------------------------A100---------------------H100------------------------------
+-------------------------------------------------------------------------------------------
+                                         S=1, K=1024
+out_f32_torch: perf only, time:0.00567675ms,     time:0.00341058ms,      
+     out_f32: perf only, time:0.00394201ms,      time:0.00238609ms, 
+   out_f32x4: perf only, time:0.00391364ms,      time:0.00235605ms, 
+-------------------------------------------------------------------------------------------
+out_f16_torch: perf only, time:0.00568199ms,     time:0.00336981ms,
+     out_f16: perf only,  time:0.00389862ms,     time:0.00238943ms,
+   out_f16x2: perf only,  time:0.00379753ms,     time:0.00234962ms,
+   out_f16x8: perf only,  time:0.00384068ms,     time:0.00236797ms,
+out_f16x8pack: perf only, time:0.00378227ms,     time:0.00233698ms,
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
                 S=1, K=2048
-out_f32_torch: perf only, time:0.00341225ms, 
-     out_f32: test pass, time:0.00245380ms, 
-   out_f32x4: test pass, time:0.00242758ms, 
---------------------------------------------------
-out_f16_torch: perf only, time:0.00337815ms, 
-     out_f16: test pass, time:0.00245714ms, 
-   out_f16x2: test pass, time:0.00238204ms, 
-   out_f16x8: test pass, time:0.00248861ms, 
-out_f16x8pack: test pass, time:0.00233555ms, 
---------------------------------------------------
---------------------------------------------------
+out_f32_torch: perf only, time:0.00560665ms,     time:0.00341225ms, 
+     out_f32: perf only, time:0.00382042ms,      time:0.00245380ms, 
+   out_f32x4: perf only, time:0.00373864ms,      time:0.00242758ms, 
+-------------------------------------------------------------------------------------------
+out_f16_torch: perf only, time:0.00558162ms,     time:0.00337815ms, 
+     out_f16: perf only, time:0.00376892ms,      time:0.00245714ms, 
+   out_f16x2: perf only, time:0.00377941ms,      time:0.00238204ms, 
+   out_f16x8: perf only, time:0.00377893ms,      time:0.00248861ms, 
+out_f16x8pack: perf only, time:0.00376463ms,     time:0.00233555ms, 
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
                 S=1, K=4096
-out_f32_torch: perf only, time:0.00334454ms, 
-     out_f32: test pass, time:0.00245619ms, 
-   out_f32x4: test pass, time:0.00266910ms, 
---------------------------------------------------
-out_f16_torch: perf only, time:0.00334501ms, 
-     out_f16: test pass, time:0.00245571ms, 
-   out_f16x2: test pass, time:0.00245929ms, 
-   out_f16x8: test pass, time:0.00270653ms, 
-out_f16x8pack: test pass, time:0.00241470ms, 
---------------------------------------------------
---------------------------------------------------
+out_f32_torch: perf only, time:0.00561547ms,     time:0.00334454ms, 
+     out_f32: perf only, time:0.00376725ms,      time:0.00245619ms, 
+   out_f32x4: perf only, time:0.00377226ms,      time:0.00266910ms, 
+-------------------------------------------------------------------------------------------
+out_f16_torch: perf only, time:0.00560403ms,     time:0.00334501ms,
+     out_f16: perf only, time:0.00376773ms,      time:0.00245571ms,
+   out_f16x2: perf only, time:0.00381446ms,      time:0.00245929ms,
+   out_f16x8: perf only, time:0.00375676ms,      time:0.00270653ms,
+out_f16x8pack: perf only, time:0.00380087ms,     time:0.00241470ms,
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
                 S=1024, K=1024
-out_f32_torch: perf only, time:0.00389838ms, 
-     out_f32: test pass, time:0.00510073ms, 
-   out_f32x4: test pass, time:0.00402999ms, 
---------------------------------------------------
-out_f16_torch: perf only, time:0.00357676ms, 
-     out_f16: test pass, time:0.00507569ms, 
-   out_f16x2: test pass, time:0.00353575ms, 
-   out_f16x8: test pass, time:0.00391459ms, 
-out_f16x8pack: test pass, time:0.00335193ms, 
---------------------------------------------------
---------------------------------------------------
+out_f32_torch: perf only, time:0.00548983ms,     time:0.00389838ms, 
+     out_f32: perf only, time:0.00591421ms,      time:0.00510073ms, 
+   out_f32x4: perf only, time:0.00525379ms,      time:0.00402999ms, 
+-------------------------------------------------------------------------------------------
+out_f16_torch: perf only, time:0.00553870ms,     time:0.00357676ms, 
+     out_f16: perf only, time:0.00543356ms,      time:0.00507569ms, 
+   out_f16x2: perf only, time:0.00422311ms,      time:0.00353575ms, 
+   out_f16x8: perf only, time:0.00503445ms,      time:0.00391459ms, 
+out_f16x8pack: perf only, time:0.00397873ms,     time:0.00335193ms, 
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
                 S=1024, K=2048
-out_f32_torch: perf only, time:0.00562215ms, 
-     out_f32: test pass, time:0.00785375ms, 
-   out_f32x4: test pass, time:0.00580502ms, 
---------------------------------------------------
-out_f16_torch: perf only, time:0.00492954ms, 
-     out_f16: test pass, time:0.00760341ms, 
-   out_f16x2: test pass, time:0.00511193ms, 
-   out_f16x8: test pass, time:0.00524664ms, 
-out_f16x8pack: test pass, time:0.00414419ms, 
---------------------------------------------------
---------------------------------------------------
+out_f32_torch: perf only, time:0.00862980ms,     time:0.00562215ms, 
+     out_f32: perf only, time:0.01012707ms,      time:0.00785375ms, 
+   out_f32x4: perf only, time:0.00787663ms,      time:0.00580502ms, 
+-------------------------------------------------------------------------------------------
+out_f16_torch: perf only, time:0.00546074ms,     time:0.00492954ms, 
+     out_f16: perf only, time:0.00885391ms,      time:0.00760341ms, 
+   out_f16x2: perf only, time:0.00591874ms,      time:0.00511193ms, 
+   out_f16x8: perf only, time:0.00959873ms,      time:0.00524664ms, 
+out_f16x8pack: perf only, time:0.00526404ms,     time:0.00414419ms, 
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
                 S=1024, K=4096
-out_f32_torch: perf only, time:0.02949786ms, 
-     out_f32: test pass, time:0.03317857ms, 
-   out_f32x4: test pass, time:0.02997804ms, 
---------------------------------------------------
-out_f16_torch: perf only, time:0.00762296ms, 
-     out_f16: test pass, time:0.01314354ms, 
-   out_f16x2: test pass, time:0.01307821ms, 
-   out_f16x8: test pass, time:0.00989723ms, 
-out_f16x8pack: test pass, time:0.00586104ms, 
---------------------------------------------------
---------------------------------------------------
+out_f32_torch: perf only, time:0.03342342ms,     time:0.02949786ms, 
+     out_f32: perf only, time:0.03405070ms,      time:0.03317857ms, 
+   out_f32x4: perf only, time:0.03321743ms,      time:0.02997804ms, 
+-------------------------------------------------------------------------------------------
+out_f16_torch: perf only, time:0.00776005ms,     time:0.00762296ms, 
+     out_f16: perf only, time:0.01594949ms,      time:0.01314354ms, 
+   out_f16x2: perf only, time:0.01496744ms,      time:0.01307821ms, 
+   out_f16x8: perf only, time:0.01795411ms,      time:0.00989723ms, 
+out_f16x8pack: perf only, time:0.00733542ms,     time:0.00586104ms, 
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
                 S=2048, K=1024
-out_f32_torch: perf only, time:0.00559092ms, 
-     out_f32: test pass, time:0.00833440ms, 
-   out_f32x4: test pass, time:0.00584459ms, 
---------------------------------------------------
-out_f16_torch: perf only, time:0.00494170ms, 
-     out_f16: test pass, time:0.00771236ms, 
-   out_f16x2: test pass, time:0.00475264ms, 
-   out_f16x8: test pass, time:0.00505304ms, 
-out_f16x8pack: test pass, time:0.00412250ms, 
---------------------------------------------------
---------------------------------------------------
+out_f32_torch: perf only, time:0.00850487ms,     time:0.00559092ms, 
+     out_f32: perf only, time:0.00981045ms,      time:0.00833440ms, 
+   out_f32x4: perf only, time:0.00732684ms,      time:0.00584459ms, 
+-------------------------------------------------------------------------------------------
+out_f16_torch: perf only, time:0.00549412ms,     time:0.00494170ms, 
+     out_f16: perf only, time:0.00811911ms,      time:0.00771236ms, 
+   out_f16x2: perf only, time:0.00559855ms,      time:0.00475264ms, 
+   out_f16x8: perf only, time:0.00891638ms,      time:0.00505304ms, 
+out_f16x8pack: perf only, time:0.00497270ms,     time:0.00412250ms, 
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
                 S=2048, K=2048
-out_f32_torch: perf only, time:0.03000808ms, 
-     out_f32: test pass, time:0.03323030ms, 
-   out_f32x4: test pass, time:0.03017473ms, 
---------------------------------------------------
-out_f16_torch: perf only, time:0.00772047ms, 
-     out_f16: test pass, time:0.01344585ms, 
-   out_f16x2: test pass, time:0.00859475ms, 
-   out_f16x8: test pass, time:0.00884628ms, 
-out_f16x8pack: test pass, time:0.00606966ms, 
---------------------------------------------------
---------------------------------------------------
+out_f32_torch: perf only, time:0.03307223ms,     time:0.03000808ms, 
+     out_f32: perf only, time:0.03419304ms,      time:0.03323030ms, 
+   out_f32x4: perf only, time:0.03317666ms,      time:0.03017473ms, 
+-------------------------------------------------------------------------------------------
+out_f16_torch: perf only, time:0.00783134ms,     time:0.00772047ms, 
+     out_f16: perf only, time:0.01579738ms,      time:0.01344585ms, 
+   out_f16x2: perf only, time:0.00996876ms,      time:0.00859475ms, 
+   out_f16x8: perf only, time:0.01438761ms,      time:0.00884628ms, 
+out_f16x8pack: perf only, time:0.00738382ms,     time:0.00606966ms, 
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
                 S=2048, K=4096
-out_f32_torch: perf only, time:0.05841351ms, 
-     out_f32: test pass, time:0.06206322ms, 
-   out_f32x4: test pass, time:0.05817080ms, 
---------------------------------------------------
-out_f16_torch: perf only, time:0.03015709ms, 
-     out_f16: test pass, time:0.03816795ms, 
-   out_f16x2: test pass, time:0.03311801ms, 
-   out_f16x8: test pass, time:0.03023982ms, 
-out_f16x8pack: test pass, time:0.03011894ms, 
---------------------------------------------------
---------------------------------------------------
+out_f32_torch: perf only, time:0.06190515ms,     time:0.05841351ms, 
+     out_f32: perf only, time:0.06399727ms,      time:0.06206322ms, 
+   out_f32x4: perf only, time:0.06096578ms,      time:0.05817080ms, 
+-------------------------------------------------------------------------------------------
+out_f16_torch: perf only, time:0.03335142ms,     time:0.03015709ms, 
+     out_f16: perf only, time:0.04095340ms,      time:0.03816795ms, 
+   out_f16x2: perf only, time:0.03451037ms,      time:0.03311801ms, 
+   out_f16x8: perf only, time:0.03899598ms,      time:0.03023982ms, 
+out_f16x8pack: perf only, time:0.03342628ms,     time:0.03011894ms, 
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
                 S=4096, K=1024
-out_f32_torch: perf only, time:0.02950215ms, 
-     out_f32: test pass, time:0.03306103ms, 
-   out_f32x4: test pass, time:0.02963662ms, 
---------------------------------------------------
-out_f16_torch: perf only, time:0.00760317ms, 
-     out_f16: test pass, time:0.01353121ms, 
-   out_f16x2: test pass, time:0.00755358ms, 
-   out_f16x8: test pass, time:0.00729251ms, 
-out_f16x8pack: test pass, time:0.00583339ms, 
---------------------------------------------------
---------------------------------------------------
+out_f32_torch: perf only, time:0.03338289ms,     time:0.02950215ms, 
+     out_f32: perf only, time:0.03491116ms,      time:0.03306103ms, 
+   out_f32x4: perf only, time:0.03328347ms,      time:0.02963662ms, 
+-------------------------------------------------------------------------------------------
+out_f16_torch: perf only, time:0.00785542ms,     time:0.00760317ms, 
+     out_f16: perf only, time:0.01592851ms,      time:0.01353121ms, 
+   out_f16x2: perf only, time:0.00968266ms,      time:0.00755358ms, 
+   out_f16x8: perf only, time:0.01367760ms,      time:0.00729251ms, 
+out_f16x8pack: perf only, time:0.00771928ms,     time:0.00583339ms, 
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
                 S=4096, K=2048
-out_f32_torch: perf only, time:0.05841112ms, 
-     out_f32: test pass, time:0.06201553ms, 
-   out_f32x4: test pass, time:0.05850029ms, 
---------------------------------------------------
-out_f16_torch: perf only, time:0.03020716ms, 
-     out_f16: test pass, time:0.03771353ms, 
-   out_f16x2: test pass, time:0.03360677ms, 
-   out_f16x8: test pass, time:0.03022838ms, 
-out_f16x8pack: test pass, time:0.03011036ms, 
---------------------------------------------------
---------------------------------------------------
+out_f32_torch: perf only, time:0.06118751ms,     time:0.05841112ms, 
+     out_f32: perf only, time:0.06410742ms,      time:0.06201553ms, 
+   out_f32x4: perf only, time:0.06083202ms,      time:0.05850029ms, 
+-------------------------------------------------------------------------------------------
+out_f16_torch: perf only, time:0.03331327ms,     time:0.03020716ms, 
+     out_f16: perf only, time:0.04071307ms,      time:0.03771353ms, 
+   out_f16x2: perf only, time:0.03451872ms,      time:0.03360677ms, 
+   out_f16x8: perf only, time:0.03442788ms,      time:0.03022838ms, 
+out_f16x8pack: perf only, time:0.03324819ms,     time:0.03011036ms, 
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
                 S=4096, K=4096
-out_f32_torch: perf only, time:0.11065626ms, 
-     out_f32: test pass, time:0.11884356ms, 
-   out_f32x4: test pass, time:0.11057448ms, 
---------------------------------------------------
-out_f16_torch: perf only, time:0.05813980ms, 
-     out_f16: test pass, time:0.07307720ms, 
-   out_f16x2: test pass, time:0.06161022ms, 
-   out_f16x8: test pass, time:0.05811405ms, 
-out_f16x8pack: test pass, time:0.05860877ms, 
---------------------------------------------------
+out_f32_torch: perf only, time:0.11693478ms,     time:0.11065626ms, 
+     out_f32: perf only, time:0.12490106ms,      time:0.11884356ms, 
+   out_f32x4: perf only, time:0.11669540ms,      time:0.11057448ms, 
+-------------------------------------------------------------------------------------------
+out_f16_torch: perf only, time:0.06095266ms,     time:0.05813980ms, 
+     out_f16: perf only, time:0.07748842ms,      time:0.07307720ms, 
+   out_f16x2: perf only, time:0.06546021ms,      time:0.06161022ms, 
+   out_f16x8: perf only, time:0.07153106ms,      time:0.05811405ms, 
+out_f16x8pack: perf only, time:0.06147933ms,     time:0.05860877ms, 
+-------------------------------------------------------------------------------------------
 ```
