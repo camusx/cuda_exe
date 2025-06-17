@@ -6,11 +6,9 @@
 #include <stdlib.h>
 #include <torch/extension.h>
 #include <torch/types.h>
+#include "../data_base.h"
 
 #define BLOCK_SIZE 256
-#define FLOAT4(value) (reinterpret_cast<float4 *>(&(value))[0])
-#define HALF2(value) (reinterpret_cast<half2 *>(&(value))[0])
-#define LDST128BITS(value) (reinterpret_cast<float4 *>(&(value))[0])
 
 __global__ void ew_add_f32(float *a, float *b, float *c, int len) {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
@@ -89,16 +87,6 @@ __global__ void ew_add_f16x8_pack(half *a, half *b, half *c, int len) {
     // reinterpret as float4 and store 128 bits in 1 memory issue.
     if ((idx + 7) < len) { LDST128BITS(c[idx]) = LDST128BITS(pack_c[0]); }
 }
-
-// --------------------- PyTorch bindings for custom kernel -----------------------
-#define STRINGFY(str) #str
-#define TORCH_BINDING_COMMON_EXTENSION(func) m.def(STRINGFY(func), &func, STRINGFY(func));
-
-#define CHECK_TORCH_TENSOR_DTYPE(T, torch_type)                                                                        \
-    if (((T).options().dtype() != (torch_type))) {                                                                     \
-        std::cout << "Tensor Info:" << (T).options() << std::endl;                                                     \
-        throw std::runtime_error("values must be " #torch_type);                                                       \
-    }
 
 #define TORCH_BINDING_ELEM_ADD(packed_type, torch_type, element_type, pack_num)                                        \
     void elementwise_add_##packed_type(torch::Tensor a, torch::Tensor b, torch::Tensor c) {                            \
