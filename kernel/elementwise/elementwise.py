@@ -65,7 +65,7 @@ def run_benchmark(perf_func: callable, tag: str, a: torch.Tensor, b: torch.Tenso
     out_info = f"out_{tag}"
     res = "perf only"
     if check_diff: res = check_result(golden, out, diff)
-    print(f"{out_info:>12}: {res}, time:{mean_time:.8f}ms, ")
+    print(f"{out_info:>16}: {res}, time:{mean_time:.8f}ms, ")
     return out, mean_time
 
 Ss = [1, 1024, 2048, 4096]
@@ -80,7 +80,7 @@ for (S, K) in SKs:
     diff = 1e-6
 
     print("-" * 50)
-    print(" " * 16 + f"S={S}, K={K}")
+    print(" " * 20 + f"S={S}, K={K}")
     a = torch.randn((S, K)).cuda().float().contiguous()
     b = torch.randn((S, K)).cuda().float().contiguous()
     c = torch.zeros_like(a).cuda().float().contiguous()
