@@ -21,7 +21,7 @@ __device__ __forceinline__ float hardswish_float(float x) {
     if (x <= -3.f) {
         return 0.f;
     } else if (x >= 3.f) {
-        return 3.f;
+        return x;
     } else {
         return x * (x + 3.f) / 6.f;
     }
@@ -30,7 +30,7 @@ __device__ __forceinline__ float hardswish_float(float x) {
 // hardswish implement for one half element
 __device__ __forceinline__ half hardswish_half(half x) {
     if (x <= __float2half(-3.f)) {
-        return 0;
+        return __float2half(0.f);
     } else if (x >= __float2half(3.f)) {
         return x;
     } else {

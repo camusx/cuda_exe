@@ -94,11 +94,12 @@ for (S, K) in SKs:
     y = torch.zeros_like(x).cuda().float().contiguous()
     y_torch = torch.zeros_like(x).cuda().float().contiguous()
 
-    run_benchmark(torch_hardswish, "f32_th", x, y_torch)
-    run_benchmark(lib.hardswish_f32,      "f32",    x, y, check_diff, diff, y_torch)
-    run_benchmark(lib.hardswish_f32x4,    "f32x4",  x, y, check_diff, diff, y_torch)
+    run_benchmark(torch_hardswish,     "f32_th", x, y_torch)
+    run_benchmark(lib.hardswish_f32,   "f32",    x, y, check_diff, diff, y_torch)
+    run_benchmark(lib.hardswish_f32x4, "f32x4",  x, y, check_diff, diff, y_torch)
 
     print("-" * 50)
+    diff = 1e-3
     x_f16 = x.half().contiguous()
     y_f16 = y.half().contiguous()
     y_f16_torch = y.half().contiguous()
